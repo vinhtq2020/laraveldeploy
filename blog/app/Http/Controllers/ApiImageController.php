@@ -44,7 +44,7 @@ class ApiImageController extends Controller
             $file = $request->file('file');
             
             // đừng dùng hàm store,storage::url() ngu học toàn lưu thêm tên public// storage/tên hình ngu học
-            $path = $file->move('images', md5($file->getClientOriginalName()).".jpg");
+            $path = $file->move('images', md5($file->getClientOriginalName())."_".strtotime("now").".jpg");
             $image = new Image();
             $image->url = $path;
             $image->priority = 1;
@@ -102,7 +102,7 @@ class ApiImageController extends Controller
             $file = $request->file('file');
 
             // đừng dùng hàm store,storage::url() ngu học toàn lưu thêm tên public || storage/tên hình ngu học
-            $path = $file->move('images', md5($file->getClientOriginalName())+"_"+strtotime("now"));
+            $path = $file->move('images', md5($file->getClientOriginalName())."_".strtotime("now").".jpg");
             $image->url = $path;
             $image->save();
         } else {
