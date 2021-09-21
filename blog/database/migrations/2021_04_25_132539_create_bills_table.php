@@ -17,7 +17,7 @@ class CreateBillsTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->decimal('total',18,0);
-            $table->string('status')->default('không thành công');
+            $table->string('status');
             $table->timestamps();
         });
     }
