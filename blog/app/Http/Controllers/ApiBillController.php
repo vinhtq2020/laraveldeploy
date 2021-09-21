@@ -77,6 +77,7 @@ class ApiBillController extends Controller
             $bill=new Bill();
             $bill->user_id=$request->user_id;
             $bill->total = $request->total;
+            $bill->status = $request->status;
             $bill->save();
             foreach($books_in_cart as $item){
                 $billdetail = new BillDetail();
