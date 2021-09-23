@@ -22,6 +22,7 @@ Route::get('/user','ApiUserController@userInfo')->middleware('auth:api'); // má»
 Route::get('/user-count','ApiUserController@getNumberUsers');
 Route::get('/user/action/getAll','ApiUserController@getAllUsers');
 Route::get('user/{id}','ApiUserController@getUserInfoById');
+Route::get('user/action/getAllEmail','ApiUserController@getAllEmail');
 Route::post('/user/action/changeRole','ApiUserController@changeRoleUser');
 Route::post('user/action/updateInfo/{id}','ApiUserController@updateInfo');
 

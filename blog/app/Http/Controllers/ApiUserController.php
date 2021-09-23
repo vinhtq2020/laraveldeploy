@@ -100,4 +100,9 @@ class ApiUserController extends Controller
         $user =User::find($id);
         return response()->json($user);
     }
+
+    public  function getAllEmail(){
+        $email_list = User::all()->select('email')->get();
+        return response()->json($email_list);
+    }
 }
