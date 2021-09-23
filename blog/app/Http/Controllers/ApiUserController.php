@@ -102,7 +102,7 @@ class ApiUserController extends Controller
     }
 
     public  function getAllEmail(){
-        $email_list = User::all()->select('email')->get();
+        $email_list = User::select('email')->get();
         return response()->json($email_list);
     }
 }
