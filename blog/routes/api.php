@@ -43,7 +43,7 @@ Route::get('/book/action/getBookBestSale/{number}','ApiBookController@getBookBes
 Route::get('/book/action/getBooksByAllCategories/{number}','ApiBookController@getBooksByAllCategories');
 Route::get('/book/action/getBookToSearch','ApiBookController@getBookToSearch');
 Route::get('/book/action/getAll','ApiBookController@getAll');
-Route::get('/book/action/getBookBySeo','ApiBookController@getBookBySeo');
+Route::get('/book/action/getBookBySeo/{bookSeo}','ApiBookController@getBookBySeo');
 Route::resource('/book-received','ApiBookReceivedController');
 
 Route::resource('/author','ApiAuthorController')->only(['index','show','update','edit','store','destroy']);
