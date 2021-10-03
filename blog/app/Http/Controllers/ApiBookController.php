@@ -187,4 +187,9 @@ class ApiBookController extends Controller
 
         return response()->json(['bookData' => $books]);
     }
+
+    public function getAll(){
+        $query = Book::all();
+        return response()->json($query);
+    }
 }
