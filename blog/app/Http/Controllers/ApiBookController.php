@@ -192,4 +192,9 @@ class ApiBookController extends Controller
         $query = Book::all();
         return response()->json($query);
     }
+
+    public function getBookBySeo($seo){
+        $book = Book::with('Category', 'Image', 'Author', 'Nxb')->where('book_seo',$seo)->get();
+        return response()->json($book);
+    }
 }
