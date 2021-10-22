@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BillDetail;
-use App\Models\Book;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
-class ApiBillDetailController extends Controller
+class ApiReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,6 +36,13 @@ class ApiBillDetailController extends Controller
     public function store(Request $request)
     {
         //
+        $count = Review::where('user_id',$request->user_id)->where('book_id',$request->book_id)->count();
+        if($count>0) return response()->json('đã tạo nhận xét');
+        $review = new Review();
+        $review->user_id = $request->user_id;
+        $review->book_id = $request->book_id;
+        $review->save();
+        return response()->json($review);
     }
 
     /**
@@ -82,15 +88,5 @@ class ApiBillDetailController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function getBillDetailByIdBill($id){
-        $bill_details = BillDetail::with('Image')->where('bill_id',$id)->get();
-        return response()->json($bill_details);
-    }
-
-    public function getBookBoughtByIdUser($user_id){
-        $books = BillDetail::with('Book','Image','Bill')->where('user_id',$user_id)->distinct()->get();
-        return response()->json($books);
     }
 }

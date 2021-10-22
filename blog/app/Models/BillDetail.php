@@ -22,7 +22,10 @@ class BillDetail extends Model
         // );
         return $this->hasMany('App\Models\Image','book_id','book_id');
     }
-
+    
+    public function Bill(){
+        return $this->belongsTo('App\Models\Bill');
+    }
     
 
 }

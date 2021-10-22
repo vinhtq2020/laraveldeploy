@@ -66,6 +66,8 @@ Route::get('/revenue-month/action/getRevenue','ApiRevenueMonthController@getReve
 Route::get('/revenue-month/action/getRevenueEveryMonthInYear/{year}','ApiRevenueMonthController@getRevenueEveryMonthInYear');
 Route::resource('/nxb','ApiNxbController');
 Route::get('/nxb/action/getNxbs','ApiNxbController@getNxbs');
+
+Route::resource('/review','ApiReviewController');
 // Route::get('/bill/action/get-new-bills/{number}','ApiBillController@getBillByNumber');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
