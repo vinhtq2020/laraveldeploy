@@ -202,7 +202,7 @@ class ApiBookController extends Controller
 
     public function getBookBoughtByIdUser($user_id){
         $book_reviews = Review::where('user_id',$user_id)->get('book_id');
-        $books = Book::join('bill_details','bill_details.book_id','=','books.id')->join('bills','bills.id','=','bill_details.bill_id')->where('bills.user_id','=',$user_id)->join('images','images.book_id','books.id')->whereNotIn('books.id',$book_reviews)->distinct('books.book_id')->get();
+        $books = Book::join('bill_details','bill_details.book_id','=','books.id')->join('bills','bills.id','=','bill_details.bill_id')->where('bills.user_id','=',$user_id)->join('images','images.book_id','books.id')->whereNotIn('books.id',$book_reviews)->distinct('books.id')->get();
         return response()->json($books);
     }
 }
