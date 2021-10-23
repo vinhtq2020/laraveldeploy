@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Bill;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\Review;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -196,5 +198,11 @@ class ApiBookController extends Controller
     public function getBookBySeo($bookSeo){
         $book = Book::with('Category', 'Image', 'Author', 'Nxb')->where('book_seo',$bookSeo)->get();
         return response()->json($book);
+    }
+
+    public function getBookBoughtByIdUser($user_id){
+        $book_reviews = Review::where('user_id',$user_id)->get('book_id');
+        $books = Book::join('bill_details','bill_details.book_id','=','books.id')->join('bills','bills.id','=','bill_details.bill_id')->where('bills.user_id','=',$user_id)->whereNotIn('books.id',$book_reviews)->distinct('book_id')->get();
+        return response()->json($books);
     }
 }

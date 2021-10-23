@@ -88,9 +88,4 @@ class ApiBillDetailController extends Controller
         $bill_details = BillDetail::with('Image')->where('bill_id',$id)->get();
         return response()->json($bill_details);
     }
-
-    public function getBookBoughtByIdUser($user_id){
-        $books = BillDetail::with('Book','Image','Bill')->where('user_id',$user_id)->distinct()->get();
-        return response()->json($books);
-    }
 }

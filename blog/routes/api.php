@@ -44,8 +44,9 @@ Route::get('/book/action/getBooksByAllCategories/{number}','ApiBookController@ge
 Route::get('/book/action/getBookToSearch','ApiBookController@getBookToSearch');
 Route::get('/book/action/getAll','ApiBookController@getAll');
 Route::get('/book/action/getBookBySeo/{bookSeo}','ApiBookController@getBookBySeo');
-Route::resource('/book-received','ApiBookReceivedController');
+Route::get('/book/action/getBookBoughtByIdUser/{user_id}','ApiBookController@getBookBoughtByIdUser');
 
+Route::resource('/book-received','ApiBookReceivedController');
 Route::resource('/author','ApiAuthorController')->only(['index','show','update','edit','store','destroy']);
 
 Route::get('/author/action/getauthors','ApiAuthorController@getAllAuthors');
