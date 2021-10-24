@@ -41,12 +41,18 @@ class ApiBookRateController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $book_id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($book_id)
     {
         //
+        $book_rate= BookRate::where('book_id',$book_id)->first();
+        if($book_rate==null){
+            $book_rate = new BookRate();
+            $book_rate->book_id = $book_id;
+        }
+        return response()->json($book_rate);
     }
 
     /**
