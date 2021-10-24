@@ -16,4 +16,8 @@ class Review extends Model
     public function image(){
         return $this->hasMany('App\Models\Image','book_id','book_id');
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

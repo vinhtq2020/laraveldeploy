@@ -69,6 +69,7 @@ Route::resource('/nxb','ApiNxbController');
 Route::get('/nxb/action/getNxbs','ApiNxbController@getNxbs');
 
 Route::resource('/review','ApiReviewController');
+Route::get('/review/action/getReviewBookPaginateById/{id}','ApiReviewController@getReviewBookPaginateById');
 
 Route::resource('/bookrate','ApiBookRateController');
 // Route::get('/bill/action/get-new-bills/{number}','ApiBillController@getBillByNumber');

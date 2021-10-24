@@ -92,5 +92,8 @@ class ApiReviewController extends Controller
         //
     }
 
-    
+    public function getReviewBookPaginateById($id){
+        $reviews = Review::with('User')->where('book_id',$id)->latest()->paginate(5);
+        return response()->json($reviews);
+    }
 }
