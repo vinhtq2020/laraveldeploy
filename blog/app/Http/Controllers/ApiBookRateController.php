@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Review;
+use App\Models\BookRate;
 use Illuminate\Http\Request;
 
-class ApiReviewController extends Controller
+class ApiBookRateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,15 +36,6 @@ class ApiReviewController extends Controller
     public function store(Request $request)
     {
         //
-      $review = new Review();
-      $review->user_id = $request->user_id;
-      $review->book_id = $request->book_id;
-      $review->rate = $request->rate;
-      $review->content = $request->content;
-      $review->like = 0;
-      $review->isReview = true;
-      $review->save();
-        return response()->json($review);
     }
 
     /**
@@ -73,12 +64,22 @@ class ApiReviewController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $book_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $book_id)
     {
-        //
+        $book_rate = BookRate::where('book_id',$book_id)->first();
+        if($book_rate==null){
+            $book_rate = new BookRate();
+            $book_rate->book_id = $book_id;
+        }
+        $new_vote_number = $book_rate->vote_number + 1;
+        $rate_add = $request->rate_add;
+        $book_rate->rate = ($book_rate->rate * $book_rate->vote_number + $rate_add)/$new_vote_number;
+        $book_rate->vote_number = $new_vote_number;
+        $book_rate->save();
+        return response()->json($book_rate);
     }
 
     /**
@@ -92,5 +93,4 @@ class ApiReviewController extends Controller
         //
     }
 
-    
 }
