@@ -36,12 +36,13 @@ class ApiReviewController extends Controller
     public function store(Request $request)
     {
         //
-        $count = Review::where('user_id',$request->user_id)->where('book_id',$request->book_id)->count();
-        if($count>0) return response()->json('đã tạo nhận xét');
-        $review = new Review();
-        $review->user_id = $request->user_id;
-        $review->book_id = $request->book_id;
-        $review->save();
+      $review = new Review();
+      $review->user_id = $request->user_id;
+      $review->book_id = $request->book_id;
+      $review->rate = $request->rate;
+      $review->content = $request->content;
+      $review->like = 0;
+      $review->isReview = true;
         return response()->json($review);
     }
 
