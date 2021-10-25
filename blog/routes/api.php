@@ -72,6 +72,9 @@ Route::resource('/review','ApiReviewController');
 Route::get('/review/action/getReviewBookPaginateById/{id}','ApiReviewController@getReviewBookPaginateById');
 
 Route::resource('/bookrate','ApiBookRateController');
+
+Route::resource('/bookview','ApiBookViewController');
+Route::get('/bookview/action/getTopBookViewInMonth/{number}/{month}/{year}','ApiBookViewController@getTopBookViewInMonth');
 // Route::get('/bill/action/get-new-bills/{number}','ApiBillController@getBillByNumber');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

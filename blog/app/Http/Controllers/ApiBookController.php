@@ -135,7 +135,7 @@ class ApiBookController extends Controller
 
     public function getBookByCategoryId($idCategory, $number)
     {
-        $book = Book::with('Image')->where('category_id', $idCategory)->take($number)->get();
+        $book = Book::with('Image','BookRate')->where('category_id', $idCategory)->take($number)->get();
         return response()->json($book);
     }
 
@@ -147,7 +147,7 @@ class ApiBookController extends Controller
         $end->endOfMonth();
         $book = Book::withCount(['bill_detail' => function (Builder $query) use($start,$end) {
             $query->whereBetween('bill_details.created_at',[$start,$end]);
-        }])->with(['Image'])->orderBy('bill_detail_count','desc')->take($number)->get();
+        }])->with(['Image','BookRate'])->orderBy('bill_detail_count','desc')->take($number)->get();
          
         return response()->json($book);
     }
@@ -157,7 +157,7 @@ class ApiBookController extends Controller
         $category_array = Category::all();
         $book_by_category = [];
         foreach ($category_array as $item) {
-            $books_tmp = Book::with('Image')->where('category_id', $item['id'])->take($number)->get();
+            $books_tmp = Book::with('Image','BookRate')->where('category_id', $item['id'])->take($number)->get();
             array_push($book_by_category, ['category' => $item, 'books' => $books_tmp]);
         }
         return response()->json($book_by_category);
@@ -165,7 +165,7 @@ class ApiBookController extends Controller
 
     public function getBookToSearch(Request $request)
     {
-        $query = Book::with('Image');
+        $query = Book::with('Image','BookRate');
         $query->when($request->has('min'), function ($q) {
             return $q->where('price', '>=', request('min'));
         });

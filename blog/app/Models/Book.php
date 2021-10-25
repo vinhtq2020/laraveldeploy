@@ -28,4 +28,7 @@ class Book extends Model
     public function nxb(){
         return $this->belongsTo('App\Models\Nxb');
     }
+    public function bookrate(){
+        return $this->hasOne('App\Models\BookRate');
+    }
 }
