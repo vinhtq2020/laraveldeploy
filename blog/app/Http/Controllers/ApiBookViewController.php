@@ -106,7 +106,7 @@ class ApiBookViewController extends Controller
         $book_views = BookView::where('book_id',$book_id)->get();
         $total=0;
         foreach($book_views as $item){
-            $total +=$item;
+            $total +=$item->view_number;
         }
         return response()->json($total);
     }
