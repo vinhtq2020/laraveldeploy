@@ -70,7 +70,7 @@ class ApiBookController extends Controller
     public function show($id)
     {
         //
-        $book = Book::with('Category', 'Image', 'Author', 'Nxb')->find($id);
+        $book = Book::with('Category', 'Image', 'Author', 'Nxb','BookRate')->find($id);
         return response()->json($book);
     }
 
@@ -129,7 +129,7 @@ class ApiBookController extends Controller
 
     public function getNewBooks($number)
     {
-        $books = Book::with('Category', 'Image')->latest()->take($number)->get();
+        $books = Book::with('Category', 'Image', 'BookRate')->latest()->take($number)->get();
         return response()->json($books);
     }
 
