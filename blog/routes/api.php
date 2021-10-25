@@ -75,6 +75,8 @@ Route::resource('/bookrate','ApiBookRateController');
 
 Route::resource('/bookview','ApiBookViewController');
 Route::get('/bookview/action/getTopBookViewInMonth/{number}/{month}/{year}','ApiBookViewController@getTopBookViewInMonth');
+Route::get('/bookview/action/getBookViewById/{book_id}','ApiBookViewController@getBookViewById');
+
 // Route::get('/bill/action/get-new-bills/{number}','ApiBillController@getBillByNumber');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

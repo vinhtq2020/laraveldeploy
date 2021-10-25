@@ -73,7 +73,7 @@ class ApiBookViewController extends Controller
     {
         $month = Carbon::now()->month;
         $year = Carbon::now()->year;
-        $book_view = BookView::where('month',$month)->where('year',$year)->first();
+        $book_view = BookView::where('month',$month)->where('year',$year)->where('book_id',$book_id)->first();
         if($book_view==null){
             $book_view = new BookView();
             $book_view->book_id=$book_id;
@@ -100,5 +100,14 @@ class ApiBookViewController extends Controller
     public function getTopBookViewInMonth($number,$month,$year){
         $book_views = BookView::where('month',$month)->where('year',$year)->orderBy('view_number','desc')->take($number)->get();
         return response()->json($book_views);
+    }
+
+    public function getBookViewById($book_id){
+        $book_views = BookView::where('book_id',$book_id)->get();
+        $total=0;
+        foreach($book_views as $item){
+            $total +=$item;
+        }
+        return response()->json($total);
     }
 }
