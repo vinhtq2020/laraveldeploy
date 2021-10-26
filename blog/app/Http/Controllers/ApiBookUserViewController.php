@@ -94,4 +94,9 @@ class ApiBookUserViewController extends Controller
         $book_user_view->save();
         return response()->json($book_user_view);
     }
+
+    public function getBookUserViewByUserId($user_id){
+        $book_user_views=BookUserView::with('Book','Image')->where('user_id',$user_id)->orderBy('updated_at','desc')->get();
+        return response()->json($book_user_views);
+    }
 }

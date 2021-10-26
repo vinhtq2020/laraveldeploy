@@ -79,6 +79,7 @@ Route::get('/bookview/action/getBookViewById/{book_id}','ApiBookViewController@g
 
 Route::resource('/bookuserview','ApiBookUserViewController');
 Route::post('/bookuserview/action/updateBookUserView','ApiBookUserViewController@updateBookUserView');
+Route::get('/bookuserview/action/getBookUserViewByUserId/{user_id}','ApiBookUserViewController@getBookUserViewByUserId');
 // Route::get('/bill/action/get-new-bills/{number}','ApiBillController@getBillByNumber');
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

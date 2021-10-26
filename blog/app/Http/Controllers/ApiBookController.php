@@ -205,4 +205,5 @@ class ApiBookController extends Controller
         $books = Book::join('bill_details','bill_details.book_id','=','books.id')->join('bills','bills.id','=','bill_details.bill_id')->where('bills.user_id','=',$user_id)->join('images','images.book_id','books.id')->whereNotIn('books.id',$book_reviews)->distinct('books.id')->get();
         return response()->json($books);
     }
+
 }
