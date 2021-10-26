@@ -84,7 +84,7 @@ class ApiBookUserViewController extends Controller
     }
 
     public function updateBookUserView(Request $request){
-        $book_user_view=BookUserView::where('book_id',$request->book_id)->where('user_id',$request)->first();
+        $book_user_view=BookUserView::where('book_id',$request->book_id)->where('user_id',$request->user_id)->first();
         if($book_user_view==null){
             $book_user_view==new BookUserView();
             $book_user_view->book_id = $request->book_id;
